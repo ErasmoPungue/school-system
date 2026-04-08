@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const School = require("../models/School");
 
-// CRIAR ESCOLA
 router.post("/create", async (req, res) => {
   try {
     const { name, email } = req.body;
@@ -20,12 +19,10 @@ router.post("/create", async (req, res) => {
 
     res.json(school);
   } catch (err) {
-    console.log("Erro CREATE SCHOOL:", err);
     res.status(500).json({ error: err.message });
   }
 });
 
-// VERIFICAR STATUS
 router.get("/check/:id", async (req, res) => {
   try {
     const school = await School.findById(req.params.id);
@@ -40,7 +37,6 @@ router.get("/check/:id", async (req, res) => {
 
     res.json({ status: "active" });
   } catch (err) {
-    console.log("Erro CHECK SCHOOL:", err);
     res.status(500).json({ error: err.message });
   }
 });
